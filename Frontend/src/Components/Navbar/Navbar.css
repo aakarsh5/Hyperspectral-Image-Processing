@@ -1,0 +1,33 @@
+.navbar {
+  position: sticky;
+  z-index: 1000;
+  width: 100%;
+  height: 50px;
+  background-color: aqua;
+  padding: 10px 5%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* .navbar :hover {
+  text-decoration: underline;
+} */
+
+.header {
+  font-size: large;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+ul {
+  flex: 1;
+  list-style: none;
+  text-align: center;
+}
+
+ul li {
+  display: inline-block;
+  margin: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+}

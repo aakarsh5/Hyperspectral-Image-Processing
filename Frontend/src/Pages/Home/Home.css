@@ -1,0 +1,35 @@
+.home-process {
+  margin-top: 30px;
+  padding: 15px;
+  background: #f4fdf4;
+  border: 1px solid #d1eed1;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.home-process h2 {
+  font-size: 1.8em;
+  color: #2b8a3e;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.home-process ol {
+  padding-left: 20px;
+  list-style: decimal;
+  color: #333;
+}
+
+.home-process li {
+  margin: 10px 0;
+}
+
+.home-process strong {
+  color: #2b8a3e;
+}
+
+.home-process p {
+  font-size: 1em;
+  color: #555;
+  margin: 5px 0 10px 0;
+}
