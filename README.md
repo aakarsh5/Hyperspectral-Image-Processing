@@ -1,2 +1,3 @@
 # Hyperspectral-Image-Processing
-Detects Pesticide on Apple through Hyperspectal Image 
+
+Detects Pesticide on Apple through Hyperspectal Image

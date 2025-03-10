@@ -1,0 +1,8 @@
+how to run this file
+frontend
+-> cd frontend -> npm run dev
+
+backend
+-> .venv\Scripts\activate  ## activate virtual environment
+-> cd backend -> python server.py  ## run the server
+

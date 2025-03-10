@@ -1,50 +1,43 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import os
+import subprocess
 from werkzeug.utils import secure_filename
+from model.PrepareData import prepare
 
-#initialize app
 app = Flask(__name__)
-CORS(app)  #cors for cross origin request
+CORS(app)
 
-#to upload files
-UPLOAD_FOLDER = 'uploads'
-os.makedirs(UPLOAD_FOLDER, exist_ok = True)
+UPLOAD_FOLDER = "uploads"
+app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
-#route to upload file
-@app.route('/upload', methods=['POST'])
-def upload_file():
-    if 'file' not in request.files:
-        return jsonify({'error':'No file found'})
-    
-    file = request.files['file']
-    if file.filename == '':
-        return jsonify({'error':'No file selected'})
-    
-    #save the file
-    filename = secure_filename(file.filename)
-    filepath = os.path.join(app.config['UPLOAD_FOLDER'],filename)
-    file.save(filepath)
-
-    return jsonify({'message': 'File upload successfully','filepath':filepath})
-
-@app.route('/hello',methods=['GET'])
-def hello():
-    return jsonify({'message':"Hello world"})
-
-@app.route('/upload',methods=['POST'])
+@app.route("/upload", methods=["POST"])
 def upload():
     if "files" not in request.files:
-        return jsonify({"error": "No files found"}),400
-    
-    files = request.files.getlist("files")
-    
-    for file in files:
-        file_path = os.path.join(UPLOAD_FOLDER,file.filename)
-        file.save(file_path)
-    
-    return jsonify({"message":"Folder Uploaded","file_count":len(files)})
-    
+        return jsonify({"error": "No files found from"}), 400
 
-if __name__ == '__main__':
+    folder_name = request.form.get("folderName", "1600")  # Get folder name from request
+    folder_path = os.path.join(app.config["UPLOAD_FOLDER"], folder_name)
+    print(folder_name)
+    # prepare(folder_name)
+    print(folder_path)
+    os.makedirs(folder_path, exist_ok=True)  # Create folder if not exists
+
+    files = request.files.getlist("files")
+    count = 0
+
+    for file in files:
+        filename = secure_filename(file.filename)
+        file_path = os.path.join(folder_path, filename)
+        file.save(file_path)
+        count += 1
+        # print(count)
+
+    # Call PrepareData.py with the folder name
+    subprocess.run(["python", "model/PrepareData.py", folder_name])
+
+    return jsonify({"message": f"Successfully uploaded {count} files to {folder_name}"}), 200
+
+if __name__ == "__main__":
     app.run(debug=True)
