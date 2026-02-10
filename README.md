@@ -41,7 +41,7 @@ Each hyperspectral image folder contains:
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 - **Programming Language:** Python  
 - **Libraries & Tools:**
@@ -56,7 +56,7 @@ Each hyperspectral image folder contains:
 
 ---
 
-## 🔄 Methodology
+##  Methodology
 
 1. **Data Acquisition**
    - Capture hyperspectral images using Specim IQ
